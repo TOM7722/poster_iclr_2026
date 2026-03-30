@@ -1,17 +1,466 @@
+@incollection{Bengio+chapter2007,
+author = {Bengio, Yoshua and LeCun, Yann},
+booktitle = {Large Scale Kernel Machines},
+publisher = {MIT Press},
+title = {Scaling Learning Algorithms Towards {AI}},
+year = {2007}
+}
 
-@Article{jmse13071246,
-AUTHOR = {Potočnik, Primož},
-TITLE = {Model Predictive Control for Autonomous Ship Navigation with COLREG Compliance and Chart-Based Path Planning},
-JOURNAL = {Journal of Marine Science and Engineering},
-VOLUME = {13},
-YEAR = {2025},
-NUMBER = {7},
-ARTICLE-NUMBER = {1246},
-URL = {https://www.mdpi.com/2077-1312/13/7/1246},
-ISSN = {2077-1312},
-ABSTRACT = {Autonomous ship navigation systems must ensure safe and efficient route planning while complying with the International Regulations for Preventing Collisions at Sea (COLREGs). This paper presents an integrated navigation framework that combines chart-based global path planning with a Model Predictive Control (MPC) approach for local trajectory tracking and COLREG-compliant collision avoidance. The method generates feasible reference routes using maritime charts and predefined waypoints, while the MPC controller ensures precise path following and dynamic re-planning in response to nearby vessels and coastal obstacles. Coastal features and shorelines are modeled using Global Self-consistent, Hierarchical, High-resolution Geography data, enabling MPC to treat landmasses as static obstacles. Other vessels are represented as dynamic obstacles with varying speeds and headings, and COLREG rules are embedded within the MPC framework to enable rule-compliant maneuvering during encounters. To address real-time computational constraints, a simplified MPC formulation is introduced, balancing predictive accuracy with computational efficiency, making the approach suitable for embedded implementations. The navigation framework is implemented in a MATLAB-based simulation with real-time visualization supporting multi-vessel scenarios and COLREG-aware vessel interactions. Simulation results demonstrate robust performance across diverse maritime scenarios—including complex multi-ship encounters and constrained coastal navigation—while maintaining the shortest safe routes. By seamlessly integrating chart-aware path planning with COLREG-compliant, MPC-based collision avoidance, the proposed framework offers an effective, scalable, and robust solution for autonomous maritime navigation.},
-DOI = {10.3390/jmse13071246}
+@article{Hinton06,
+author = {Hinton, Geoffrey E. and Osindero, Simon and Teh, Yee Whye},
+journal = {Neural Computation},
+pages = {1527--1554},
+title = {A Fast Learning Algorithm for Deep Belief Nets},
+volume = {18},
+year = {2006}
+}
+
+@book{goodfellow2016deep,
+title={Deep learning},
+author={Goodfellow, Ian and Bengio, Yoshua and Courville, Aaron and Bengio, Yoshua},
+volume={1},
+year={2016},
+publisher={MIT Press}
+}
+
+@InProceedings{hazan2019provablyefficientmaximumentropy,
+  title = 	 {Provably Efficient Maximum Entropy Exploration},
+  author =       {Hazan, Elad and Kakade, Sham and Singh, Karan and Van Soest, Abby},
+  booktitle = 	 {Proceedings of the 36th International Conference on Machine Learning},
+  pages = 	 {2681--2691},
+  year = 	 {2019},
+  editor = 	 {Chaudhuri, Kamalika and Salakhutdinov, Ruslan},
+  volume = 	 {97},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {09--15 Jun},
+  publisher =    {PMLR},
+}
+
+@InProceedings{haarnoja2018softactorcriticoffpolicymaximum,
+  title = 	 {Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor},
+  author =       {Haarnoja, Tuomas and Zhou, Aurick and Abbeel, Pieter and Levine, Sergey},
+  booktitle = 	 {Proceedings of the 35th International Conference on Machine Learning},
+  pages = 	 {1861--1870},
+  year = 	 {2018},
+  editor = 	 {Dy, Jennifer and Krause, Andreas},
+  volume = 	 {80},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {10--15 Jul},
+  publisher =    {PMLR},
+}
+
+@inproceedings{
+eysenbach2018diversityneedlearningskills,
+title={Diversity is All You Need: Learning Skills without a Reward Function},
+author={Benjamin Eysenbach and Abhishek Gupta and Julian Ibarz and Sergey Levine},
+booktitle={International Conference on Learning Representations},
+year={2019},
+url={https://openreview.net/forum?id=SJx63jRqFm}
+}
+
+
+@ARTICLE{Trajectory_dtw,
+  author={Vakanski, Aleksandar and Mantegh, Iraj and Irish, Andrew and Janabi-Sharifi, Farrokh},
+  journal={IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics)}, 
+  title={Trajectory Learning for Robot Programming by Demonstration Using Hidden Markov Model and Dynamic Time Warping}, 
+  year={2012},
+  volume={42},
+  number={4},
+  pages={1039-1052},
+  keywords={Trajectory;Hidden Markov models;Robots;Vectors;Clustering algorithms;Humans;Interpolation;Hidden Markov model (HMM);key points;programming by demonstration (PbD);robotics;robotics learning},
+  doi={10.1109/TSMCB.2012.2185694}}
+
+
+@InProceedings{wu2019modelbasedbehavioralcloningfuture,
+  title = 	 {Model-based Behavioral Cloning with Future Image Similarity Learning},
+  author =       {Wu, Alan and Piergiovanni, AJ and Ryoo, Michael S.},
+  booktitle = 	 {Proceedings of the Conference on Robot Learning},
+  pages = 	 {1062--1077},
+  year = 	 {2020},
+  editor = 	 {Kaelbling, Leslie Pack and Kragic, Danica and Sugiura, Komei},
+  volume = 	 {100},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {30 Oct--01 Nov},
+  publisher =    {PMLR},
+}
+
+@inproceedings{parkerholder2020effectivediversitypopulationbased,
+ author = {Parker-Holder, Jack and Pacchiano, Aldo and Choromanski, Krzysztof M and Roberts, Stephen J},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {H. Larochelle and M. Ranzato and R. Hadsell and M.F. Balcan and H. Lin},
+ pages = {18050--18062},
+ publisher = {Curran Associates, Inc.},
+ title = {Effective Diversity in Population Based Reinforcement Learning},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2020/file/d1dc3a8270a6f9394f88847d7f0050cf-Paper.pdf},
+ volume = {33},
+ year = {2020}
+}
+
+
+@misc{ciosek2018expectedpolicygradients,
+      title={Expected Policy Gradients}, 
+      author={Kamil Ciosek and Shimon Whiteson},
+      year={2018},
+      eprint={1706.05374},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML},
+      url={https://arxiv.org/abs/1706.05374}, 
+}
+
+@misc{cuturi2013sinkhorndistanceslightspeedcomputation,
+      title={Sinkhorn Distances: Lightspeed Computation of Optimal Transportation Distances}, 
+      author={Marco Cuturi},
+      year={2013},
+      eprint={1306.0895},
+      archivePrefix={arXiv},
+      primaryClass={stat.ML},
+      url={https://arxiv.org/abs/1306.0895}, 
+}
+
+@article{dtw,
+author = {Müller, Meinard},
+year = {2007},
+month = {01},
+pages = {69-84},
+title = {Dynamic time warping},
+volume = {2},
+isbn = {9783540740476},
+journal = {Information Retrieval for Music and Motion},
+doi = {10.1007/978-3-540-74048-3_4}
+}
+
+@misc{friedman2023vendiscorediversityevaluation,
+      title={The Vendi Score: A Diversity Evaluation Metric for Machine Learning}, 
+      author={Dan Friedman and Adji Bousso Dieng},
+      year={2023},
+      eprint={2210.02410},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2210.02410}, 
+}
+
+@inproceedings{sajjadi2018precision,
+ author = {Sajjadi, Mehdi S. M. and Bachem, Olivier and Lucic, Mario and Bousquet, Olivier and Gelly, Sylvain},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {S. Bengio and H. Wallach and H. Larochelle and K. Grauman and N. Cesa-Bianchi and R. Garnett},
+ pages = {},
+ publisher = {Curran Associates, Inc.},
+ title = {Assessing Generative Models via Precision and Recall},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2018/file/f7696a9b362ac5a51c3dc8f098b73923-Paper.pdf},
+ volume = {31},
+ year = {2018}
+}
+
+@book{Sutton1998,
+  added-at = {2019-07-13T10:11:53.000+0200},
+  author = {Sutton, Richard S. and Barto, Andrew G.},
+  biburl = {https://www.bibsonomy.org/bibtex/2f46601cf8b13d39d1378af0d79438b12/lanteunis},
+  edition = {Second},
+  interhash = {ac6b144aaec1819919a2fba9f705c852},
+  intrahash = {f46601cf8b13d39d1378af0d79438b12},
+  keywords = {},
+  publisher = {The MIT Press},
+  timestamp = {2019-07-13T10:11:53.000+0200},
+  title = {Reinforcement Learning: An Introduction},
+  url = {http://incompleteideas.net/book/the-book-2nd.html},
+  year = {2018 }
+}
+
+@inproceedings{wang2023optimal,
+  title={Optimal goal-reaching reinforcement learning via quasimetric learning},
+  author={Wang, Tongzhou and Torralba, Antonio and Isola, Phillip and Zhang, Amy},
+  booktitle={International Conference on Machine Learning},
+  pages={36411--36430},
+  year={2023},
+  organization={PMLR}
+}
+
+@inproceedings{
+vendirl,
+title={Vendi{RL}: A Framework for Self-Supervised Reinforcement Learning of Diversely Diverse Skills},
+author={Erik M. Lintunen},
+booktitle={Workshop on Scaling Environments for Agents},
+year={2025},
+url={https://openreview.net/forum?id=cwwzYlTsfw}
 }
 
 
 
+@article{lee2019tsallis,
+  title={Tsallis reinforcement learning: A unified framework for maximum entropy reinforcement learning},
+  author={Lee, Kyungjae and Kim, Sungyub and Lim, Sungbin and Choi, Sungjoon and Oh, Songhwai},
+  journal={arXiv preprint arXiv:1902.00137},
+  year={2019}
+}
+
+@article{nachum2017bridging,
+  title={Bridging the gap between value and policy based reinforcement learning},
+  author={Nachum, Ofir and Norouzi, Mohammad and Xu, Kelvin and Schuurmans, Dale},
+  journal={Advances in neural information processing systems},
+  volume={30},
+  year={2017}
+}
+
+@inproceedings{haarnoja2017reinforcement,
+  title={Reinforcement learning with deep energy-based policies},
+  author={Haarnoja, Tuomas and Tang, Haoran and Abbeel, Pieter and Levine, Sergey},
+  booktitle={International conference on machine learning},
+  pages={1352--1361},
+  year={2017},
+  organization={PMLR}
+}
+
+@inproceedings{campos2020explore,
+  title={Explore, discover and learn: Unsupervised discovery of state-covering skills},
+  author={Campos, V{\'\i}ctor and Trott, Alexander and Xiong, Caiming and Socher, Richard and Gir{\'o}-i-Nieto, Xavier and Torres, Jordi},
+  booktitle={International conference on machine learning},
+  pages={1317--1327},
+  year={2020},
+  organization={PMLR}
+}
+
+
+@article{sharma2019dynamics,
+  title={Dynamics-aware unsupervised discovery of skills},
+  author={Sharma, Archit and Gu, Shixiang and Levine, Sergey and Kumar, Vikash and Hausman, Karol},
+  journal={arXiv preprint arXiv:1907.01657},
+  year={2019}
+}
+
+
+@article{burda2018exploration,
+  title={Exploration by random network distillation},
+  author={Burda, Yuri and Edwards, Harrison and Storkey, Amos and Klimov, Oleg},
+  journal={arXiv preprint arXiv:1810.12894},
+  year={2018}
+}
+
+@inproceedings{pathak2017curiosity,
+  title={Curiosity-driven exploration by self-supervised prediction},
+  author={Pathak, Deepak and Agrawal, Pulkit and Efros, Alexei A and Darrell, Trevor},
+  booktitle={International conference on machine learning},
+  pages={2778--2787},
+  year={2017},
+  organization={PMLR}
+}
+
+@article{ecoffet2019go,
+  title={Go-explore: a new approach for hard-exploration problems},
+  author={Ecoffet, Adrien and Huizinga, Joost and Lehman, Joel and Stanley, Kenneth O and Clune, Jeff},
+  journal={arXiv preprint arXiv:1901.10995},
+  year={2019}
+}
+
+@article{guo2022byol,
+  title={Byol-explore: Exploration by bootstrapped prediction},
+  author={Guo, Zhaohan and Thakoor, Shantanu and P{\^\i}slar, Miruna and Avila Pires, Bernardo and Altch{\'e}, Florent and Tallec, Corentin and Saade, Alaa and Calandriello, Daniele and Grill, Jean-Bastien and Tang, Yunhao and others},
+  journal={Advances in neural information processing systems},
+  volume={35},
+  pages={31855--31870},
+  year={2022}
+}
+
+@article{pugh2016quality,
+  title={Quality diversity: A new frontier for evolutionary computation},
+  author={Pugh, Justin K and Soros, Lisa B and Stanley, Kenneth O},
+  journal={Frontiers in Robotics and AI},
+  volume={3},
+  pages={40},
+  year={2016},
+  publisher={Frontiers Media SA}
+}
+
+@article{mouret2015illuminating,
+  title={Illuminating search spaces by mapping elites},
+  author={Mouret, Jean-Baptiste and Clune, Jeff},
+  journal={arXiv preprint arXiv:1504.04909},
+  year={2015}
+}
+
+@inproceedings{lim2023understanding,
+  title={Understanding the synergies between quality-diversity and deep reinforcement learning},
+  author={Lim, Bryan and Flageat, Manon and Cully, Antoine},
+  booktitle={Proceedings of the Genetic and Evolutionary Computation Conference},
+  pages={1212--1220},
+  year={2023}
+}
+
+
+@article{ashlag2025state,
+  title={State entropy regularization for robust reinforcement learning},
+  author={Ashlag, Yonatan and Koren, Uri and Mutti, Mirco and Derman, Esther and Bacon, Pierre-Luc and Mannor, Shie},
+  journal={arXiv preprint arXiv:2506.07085},
+  year={2025}
+}
+
+@article{bettini2025system,
+  title={System neural diversity: Measuring behavioral heterogeneity in multi-agent learning},
+  author={Bettini, Matteo and Shankar, Ajay and Prorok, Amanda},
+  journal={Journal of Machine Learning Research},
+  volume={26},
+  number={163},
+  pages={1--27},
+  year={2025}
+}
+
+@inproceedings{hu2022policy,
+  title={Policy diagnosis via measuring role diversity in cooperative multi-agent rl},
+  author={Hu, Siyi and Xie, Chuanlong and Liang, Xiaodan and Chang, Xiaojun},
+  booktitle={International Conference on Machine Learning},
+  pages={9041--9071},
+  year={2022},
+  organization={PMLR}
+}
+
+
+@article{fu2020d4rl,
+  title={D4rl: Datasets for deep data-driven reinforcement learning},
+  author={Fu, Justin and Kumar, Aviral and Nachum, Ofir and Tucker, George and Levine, Sergey},
+  journal={arXiv preprint arXiv:2004.07219},
+  year={2020}
+}
+
+@article{schulman2017proximal,
+  title={Proximal policy optimization algorithms},
+  author={Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg},
+  journal={arXiv preprint arXiv:1707.06347},
+  year={2017}
+}
+
+@inproceedings{cuturi2007kernel,
+  title={A kernel for time series based on global alignments},
+  author={Cuturi, Marco and Vert, Jean-Philippe and Birkenes, Oystein and Matsui, Tomoko},
+  booktitle={2007 IEEE International Conference on Acoustics, Speech and Signal Processing-ICASSP'07},
+  volume={2},
+  pages={II--413},
+  year={2007},
+  organization={IEEE}
+}
+
+@misc{pasarkar2024cousinsvendiscorefamily,
+      title={Cousins Of The Vendi Score: A Family Of Similarity-Based Diversity Metrics For Science And Machine Learning}, 
+      author={Amey P. Pasarkar and Adji Bousso Dieng},
+      year={2024},
+      eprint={2310.12952},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2310.12952}, 
+}
+
+@article{Sakoe1978DynamicPA,
+  title={Dynamic programming algorithm optimization for spoken word recognition},
+  author={Hiroaki Sakoe},
+  journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  year={1978},
+  volume={26},
+  pages={159-165},
+  url={https://api.semanticscholar.org/CorpusID:17900407}
+}
+
+@inproceedings{
+diversitypolicyllm,
+title={Diversity-Aware Policy Optimization for Large Language Model Reasoning},
+author={Jian Yao and Ran Cheng and Xingyu Wu and Jibin Wu and KC Tan},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+year={2025},
+url={https://openreview.net/forum?id=5eZ0iykpDU}
+}
+
+@InProceedings{divergentreasoningminimal,
+  title = 	 {Flow of Reasoning: Training {LLM}s for Divergent Reasoning with Minimal Examples},
+  author =       {Yu, Fangxu and Jiang, Lai and Kang, Haoqiang and Hao, Shibo and Qin, Lianhui},
+  booktitle = 	 {Proceedings of the 42nd International Conference on Machine Learning},
+  pages = 	 {73115--73145},
+  year = 	 {2025},
+  editor = 	 {Singh, Aarti and Fazel, Maryam and Hsu, Daniel and Lacoste-Julien, Simon and Berkenkamp, Felix and Maharaj, Tegan and Wagstaff, Kiri and Zhu, Jerry},
+  volume = 	 {267},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {13--19 Jul},
+  publisher =    {PMLR},
+}
+
+@InProceedings{glownets,
+  title = 	 {Biological Sequence Design with {GF}low{N}ets},
+  author =       {Jain, Moksh and Bengio, Emmanuel and Hernandez-Garcia, Alex and Rector-Brooks, Jarrid and Dossou, Bonaventure F. P. and Ekbote, Chanakya Ajit and Fu, Jie and Zhang, Tianyu and Kilgour, Michael and Zhang, Dinghuai and Simine, Lena and Das, Payel and Bengio, Yoshua},
+  booktitle = 	 {Proceedings of the 39th International Conference on Machine Learning},
+  pages = 	 {9786--9801},
+  year = 	 {2022},
+  editor = 	 {Chaudhuri, Kamalika and Jegelka, Stefanie and Song, Le and Szepesvari, Csaba and Niu, Gang and Sabato, Sivan},
+  volume = 	 {162},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {17--23 Jul},
+  publisher =    {PMLR},
+}
+
+@inproceedings{multiobjectivemolecular,
+ author = {Zhu, Yiheng and Wu, Jialu and Hu, Chaowen and Yan, Jiahuan and hsieh, kim and Hou, Tingjun and Wu, Jian},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine},
+ pages = {79667--79684},
+ publisher = {Curran Associates, Inc.},
+ title = {Sample-efficient Multi-objective Molecular Optimization with GFlowNets},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2023/file/fbc9981dd6316378aee7fd5975250f21-Paper-Conference.pdf},
+ volume = {36},
+ year = {2023}
+}
+
+@inproceedings{
+zhang2026the,
+title={The Intricate Dance of Prompt Complexity, Quality, Diversity and Consistency in T2I Models},
+author={Xiaofeng Zhang and Aaron Courville and Michal Drozdzal and Adriana Romero-Soriano},
+booktitle={The Fourteenth International Conference on Learning Representations},
+year={2026},
+url={https://openreview.net/forum?id=RBIBMCdw7y}
+}
+
+@inproceedings{
+trang2025discovering,
+title={Discovering Latent Graphs with {GF}lowNets for Diverse Conditional Image Generation},
+author={Bailey Trang and Parham Saremi and Alan Q. Wang and Fangrui Huang and Zahra TehraniNasab and Amar Kumar and Tal Arbel and Li Fei-Fei and Ehsan Adeli},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+year={2025},
+url={https://openreview.net/forum?id=PhHrlDKcx1}
+}
+
+@inproceedings{steccanella2022state,
+  title={State representation learning for goal-conditioned reinforcement learning},
+  author={Steccanella, Lorenzo and Jonsson, Anders},
+  booktitle={Joint european conference on machine learning and knowledge discovery in databases},
+  pages={84--99},
+  year={2022},
+  organization={Springer}
+}
+
+@article{steccanella2025learning,
+  title={Learning the minimum action distance},
+  author={Steccanella, Lorenzo and Evans, Joshua B and {\c{S}}im{\c{s}}ek, {\"O}zg{\"u}r and Jonsson, Anders},
+  journal={arXiv preprint arXiv:2506.09276},
+  year={2025}
+}
+
+@inproceedings{park2023offline,
+  title={Offline goal-conditioned rl with latent states as actions},
+  author={Park, Seohong and Ghosh, Dibya and Eysenbach, Benjamin and Levine, Sergey},
+  booktitle={ICML workshop on new frontiers in learning, control, and dynamical systems},
+  year={2023}
+}
+
+@misc{geist2019theoryregularizedmarkovdecision,
+      title={A Theory of Regularized Markov Decision Processes}, 
+      author={Matthieu Geist and Bruno Scherrer and Olivier Pietquin},
+      year={2019},
+      eprint={1901.11275},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1901.11275}, 
+}
+
+@misc{myers2025temporal,
+      title={Learning Temporal Distances: Contrastive Successor Features Can Provide a Metric Structure for Decision-Making}, 
+      author={Vivek Myers and Chongyi Zheng and Anca Dragan and Sergey Levine and Benjamin Eysenbach},
+      year={2025},
+      eprint={2406.17098},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2406.17098}, 
+}

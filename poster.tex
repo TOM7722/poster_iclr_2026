@@ -1,16 +1,8 @@
-a% Gemini theme
-% https://github.com/anishathalye/gemini
-%
-% We try to keep this Overleaf template in sync with the canonical source on
-% GitHub, but it's recommended that you obtain the template directly from
-% GitHub to ensure that you are using the latest version.
-
 \documentclass[final]{beamer}
 
 % ====================
 % Packages
 % ====================
-\usepackage{subcaption}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[size=custom,width=120,height=73,scale=1.0]{beamerposter}
@@ -19,279 +11,92 @@ a% Gemini theme
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tikz}
-\usepackage{svg}
-\usepackage{fontawesome}
-\usepackage{tcolorbox}
-\usepackage{lipsum}
-\usepackage{multicol}
-\usepackage{biblatex}
-\addbibresource{poster.bib}
-
+\usepackage{svg} % Required for the .svg logos
+\newcommand{\samelineand}{\hspace{2em}} % separates institutes on the same line
+% ====================
 % ====================
 % Lengths
 % ====================
-
-% If you have N columns, choose \sepwidth and \colwidth such that
 % (N+1)*\sepwidth + N*\colwidth = \paperwidth
 \newlength{\sepwidth}
 \newlength{\colwidth}
 \setlength{\sepwidth}{0.025\paperwidth}
 \setlength{\colwidth}{0.3\paperwidth}
-
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
 
 % ====================
-% Title
+% Title / Author Info
 % ====================
-\title{\huge Autonomous surface ship navigation with chart-based MPC}
-
-\author{Thierry Bédard-Cortey \inst{1 2} \and Stanic Tom \inst{1, 2} \and  William Chidiac \inst{1, 2}  }
-
-\institute[shortinst]{\inst{1} Mila -- Institut Québécois d'Intelligence Artificielle \samelineand \inst{2} Université de Montréal}
+\title{Beyond Reward Maximization: Evaluating the Diversity of Trajectories in Reinforcement Learning with Temporal Vendi Score}
+\author{Tom Stanic \inst{1}, Marco Jiralerspong \inst{1, 2}, Xiaofeng Zhang \inst{1, 2}, Danilo Vucetic \inst{1, 2}, Gauthier Gidel \inst{1, 2, 3}}
+\institute[shortinst]{\inst{1} Université de Montréal \samelineand \inst{2} Mila -- Institut Québécois d'Intelligence Artificielle \samelineand \inst{3} CIFAR}
 
 % ====================
-% Footer (optional)
+% Logos 
 % ====================
-
-
-% (can be left out to remove footer)
-
-% ====================
-% Logo (optional)
-% ====================
-
-% use this to include logos on the left and/or right side of the header:
 \logoleft{\hspace*{+2.0cm}\includesvg[height=3.2cm]{figures/mila.svg}}
 \logoright{\includesvg[height=3.2cm]{figures/udem.svg}}
 
 % ====================
 % Body
 % ====================
-
 \begin{document}
 
 \begin{frame}[t]
 \begin{columns}[t]
 \separatorcolumn
 
-\begin{column}{1.03\colwidth}
+\begin{column}{\colwidth}
+  \begin{block}{Motivation}
+    \begin{itemize}
+      \item In reinforcement learning, an agent's task should go beyond maximizing a single scalar reward \cite{Sutton1998}; identifying diverse sets of high-quality trajectories is essential for discovering novel solutions and learning useful skills \cite{eysenbach2018diversityneedlearningskills}.
+      \item Existing metrics improve exploration during training but fall short when evaluating and comparing the general diversity induced by different agents.
+      \item Common proxies like state coverage or policy entropy measure properties adjacent to diversity and can be easily misled by action noise. \textbf{For instance, a policy might appear highly diverse due to random, jittery actions at each step, even if all trajectories ultimately collapse into the exact same behavioral path.}
+    \end{itemize}
+  \end{block}
 
-\begin{block}{Problem \& Context}
-
-\textbf{Motivation.} Autonomous ships must navigate complex coastal environments while avoiding land and other vessels in compliance with the International Regulations for Preventing Collisions at Sea (COLREGs). Safe, rule-compliant decision-making is essential
-for real-world deployment of Maritime Autonomous Surface Ships.
-
-\textbf{Goal.} Re-implement in Python a real-world autonomous ship navigation
-framework originally developed in MATLAB and validated in a peer-reviewed journal (Journal of
-Marine Science and Engineering, 2025).
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{figures/contex.png}
-    \caption{Two-level autonomous ship navigation: global planning provides waypoints, while local MPC ensures collision avoidance.}
-    \label{fig:placeholder}
-\end{figure}
-\end{block}
-
-
-\begin{block}{Model of the system}
-
-
-\textbf{State.} The own ship state is
-$s_t = (x_t, y_t, \psi_t, v_t)$, where $(x,y)$ is the planar position,
-$\psi$ the heading, and $v$ the speed.
-
-\textbf{Control.} The control input is the heading change
-$u_t = \Delta \psi_t$, bounded by a maximum turning rate.
-
-\textbf{Dynamics.} A discrete-time kinematic ship model is used:
-\[
-x_{t+1} = x_t + v_t \cos(\psi_t)\Delta t,\quad
-y_{t+1} = y_t + v_t \sin(\psi_t)\Delta t,\quad
-\psi_{t+1} = \psi_t + \Delta \psi_t.
-\]
-
-\textbf{Environment.} Other vessels are modeled as dynamic obstacles
-with constant speed and heading over the prediction horizon, yielding straight-line trajectories.
-\[
-\begin{aligned}
-x^{(j)}_{t+1} &= x^{(j)}_t + v^{(j)}\cos(\psi^{(j)})\,\Delta t, \quad
-y^{(j)}_{t+1} &= y^{(j)}_t + v^{(j)}\sin(\psi^{(j)})\,\Delta t.
-\end{aligned}
-\]
-
-\textbf{Objectives.} Track the reference waypoints while minimizing
-control effort and maintaining safe separation from other vessels.
-
-\textbf{Safety constraints.} A collision zone and a COLREG awareness zone
-define when collision avoidance and rule-compliant maneuvers are required.
-
-
-
-\begin{figure}[h]
-    \centering
-    \begin{subfigure}{0.35\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/state_purple.png}
-        \caption{State}
-        \label{fig:sub1}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.60\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/constraints.png}
-        \caption{Safety constraints.}
-        \label{fig:sub2}
-    \end{subfigure}
-    \caption{State representation and safety constraints from the original paper \cite{jmse13071246}.}
-    \label{fig:both}
-\end{figure}
-
-\end{block}
-
-
-
-
-
-\begin{alertblock}{Control / MPC}
-\begin{itemize}
-    \item \textbf{Global planning:} a grid-based Theta* planner computes a collision-free
-      sequence of waypoints $\{w_i\}$ from map data.
-  \item \textbf{Inputs:} current state $s_t$, next waypoint $w_{i+1}$, and nearby vessel states $\{s_t^{(j)}\}$.
-    \item \textbf{Output:} a horizon-$H$ sequence of heading changes $\{\Delta\psi_{t+h}\}_{h=0}^{H-1}$ ensuring collision-free behavior.
-
-\end{itemize}
-
-\end{alertblock}
-
+  \begin{block}{Contributions}
+    \begin{itemize}
+      \item We introduce the \textbf{Temporal Vendi Score (TVS)}, a novel, domain-agnostic standard designed to measure the behavioral diversity of RL agents.
+      \item TVS captures the sequential nature of state visitations and aligns with the temporal structure of the underlying Markov Decision Process (MDP) rather than relying on order-agnostic comparisons.
+    \end{itemize}
+  \end{block}
 \end{column}
 
 \separatorcolumn
 
-\begin{column}{1.02\colwidth}
-\begin{alertblock}{Control / MPC}
-\begin{itemize}
-\item \textbf{MPC.}
-At each time step, a finite set of admissible heading changes is defined:
-\[
-\mathcal{U} = \{\Delta\psi^{(1)}, \ldots, \Delta\psi^{(M)}\}
-\subset [-\Delta\psi_{\max}, \Delta\psi_{\max}].
-\]
-
-Each $\Delta\psi \in \mathcal{U}$ is applied as a constant turning rate over
-a prediction horizon $H$, inducing a candidate trajectory
-\[
-\tau(\Delta\psi) = \{s_{t+h}\}_{h=1}^{H}, \qquad
-s_{t+h+1} = f\!\left(s_{t+h}, \Delta\psi\right).
-\]
-
-Candidate trajectories not satisfying the minimum-distance constraint
-\[
-\|s_{t+h} - s^{(j)}_{t+h}\| \ge d_{\text{collision}},
-\quad \forall h,\ \forall j,
-\]
-are discarded, yielding a feasible set
-$\mathcal{T}_{\mathrm{feasible}} \subseteq\{\tau(\Delta\psi)\mid\Delta\psi\in\mathcal{U}\}$.
-
-Among $\mathcal{T}_{\mathrm{feasible}}$, the trajectory minimizing deviation
-from the next waypoint direction is selected.
-  \item \textbf{Receding horizon:} apply only the first control $\Delta\psi_t$, then re-solve at $t\!+\!1$ with updated observations.
-\end{itemize}
-\end{alertblock}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=1.0\linewidth]{figures/MPC.png}
-    \caption{Navigation framework with continuous situation awareness monitoring and switching
-between route following and MPC-based collision avoidance modes.}
-    \label{fig:placeholder}
-\end{figure}
-
-
-\begin{block}{Experiments and results }
-\textbf{Simulation setup.}
-Experiments are conducted in the Adriatic Sea near the Croatian coast.
-Other vessels are simulated with constant speed and occasional random
-heading changes to generate realistic traffic scenarios.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth, height=0.18\textheight]{figures/global.png}
-    \caption{Scenario with four waypoints, where the own ship avoids surrounding traffic vessels.}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth, height=0.18\textheight]{figures/zoom.png}
-    \caption{Collision avoidance with nearby vessels and visualization of safety constraints.}
-    \label{fig:placeholder}
-\end{figure}
- 
-\end{block}
-
-
-
+\begin{column}{\colwidth}
+  \begin{alertblock}{Methodology: Temporal Vendi Score}
+    Our approach evaluates diversity by assessing the variations in the induced distribution of trajectories. The computation involves three key steps:
+    \begin{enumerate}
+      \item \textbf{Sample Trajectories:} First, trajectories are sampled from an agent or a population of agents through environment rollouts.
+      \item \textbf{Measure Similarity:} We determine the similarity between pairs of trajectories using the Global Alignment Kernel (GAK) \cite{cuturi2007kernel}. 
+      \begin{itemize}
+        \item The GAK marginalizes over all valid monotonic alignments, allowing us to account for sequential structure.
+        \item To capture the environment's true geometry, we use a \emph{time-to-reach} distance as the local cost function, representing the minimum number of actions needed to transition between states.
+      \end{itemize}
+      \item \textbf{Aggregate Diversity:} We construct a pairwise similarity matrix and compute its eigenvalues using the Vendi score \cite{friedman2023vendiscorediversityevaluation}. This yields a single, interpretable scalar value representing general population diversity.
+    \end{enumerate}
+  \end{alertblock}
 \end{column}
 
 \separatorcolumn
 
-\begin{column}{0.96\colwidth}
+\begin{column}{\colwidth}
+  \begin{block}{Experiments \& Key Results}
+    \begin{itemize}
+      \item \textbf{Interpretability:} In grid mazes with verifiable diversity, TVS successfully produces scores that tightly correlate with the actual number of distinct behavioral strategies. For example, an agent exclusively taking a single path returns exactly 1, while an agent taking two distinct paths returns a score of 1.99.
+      \item \textbf{Superiority Over Baselines:} When agents learn to solve a task using temporally diverse sequences (e.g., using different keys in different orders), state-level metrics like state coverage and occupancy entropy remain completely flat. In contrast, TVS effectively captures this sequential structure and scales properly as agents learn new strategies.
+      \item \textbf{Sample Efficiency:} Extensive evaluations indicate that TVS converges to a stable and reliable score with a modest number of samples \cite{pasarkar2024cousinsvendiscorefamily}, requiring approximately 128 rollouts across various environment sizes.
+    \end{itemize}
+  \end{block}
 
-\begin{block}{Experiments and results (continued)}
-The following plots illustrate COLREG-inspired encounter scenarios (head-on, crossing, overtaking) with simulated vessels modeling human-operated ship behavior.
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{figures/Head-on.png}
-    \caption{Head-on encounter between two vessels.}
-    \label{fig:placeholder}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{figures/Overtaking.png}
-    \caption{An overtaking encounter: The traffic ship (red) safely overtakes our slower own vessel (blue).}
-    \label{fig:placeholder}
-\end{figure}
-
- \begin{figure}
-     \centering
-     \includegraphics[width=0.9\linewidth]{figures/Crossing.png}
-     \caption{A crossing encounter: The other ship (red) approaches from the starboard side and maintains course.}
-     \label{fig:placeholder}
- \end{figure}
-\end{block}
-
-
-\begin{block}{Limitations}
-\begin{itemize}
-    \item \textbf{Simplified environment:} the simulation does not account for
-    complex factors such as weather conditions, partial observability,
-    or vessel size and maneuverability differences.
-  \item \textbf{Limited control authority:} the controller acts only on steering
-  (heading changes). In dense traffic scenarios (e.g., port exits),
-  speed control would be necessary to ensure safety.
-  \item \textbf{Discretized control:} the simplified MPC evaluates a finite set of
-  constant turning rates, which trades optimality for real-time feasibility.
-\end{itemize}
-\end{block}
-
-\begin{block}{What We Learned}
-\begin{itemize}
-    \item \textbf{Key insight:} combining global planning with predictive,
-  constraint-aware local control is sufficient to obtain safe and COLREG-compliant
-  behavior in complex scenarios.
-  \item \textbf{Geographic data handling:} Working with real geographic data requires careful handling of coordinate
-  systems, local projections, hemispheres, and coastline representations based
-  on polygons.
-  \item \textbf{Visualization engineering:} Building clear visualizations and animations (Matplotlib) required careful engineering for debugging and validation.
-\end{itemize}
-\end{block}
-\begin{block}{Reference}
-\fullcite{jmse13071246}
-\end{block}
-
+  \begin{block}{References}
+    \footnotesize % Reduces font size for references to save space
+    \bibliographystyle{plain}
+    % Ensure your bib file is in the same directory and named iclr2026_conference.bib
+    \bibliography{poster}
+  \end{block}
 \end{column}
 
 \separatorcolumn
