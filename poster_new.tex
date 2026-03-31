@@ -13,6 +13,9 @@
 \usepackage{amsmath,amssymb}
 \usepackage{xcolor}
 \usepackage{relsize}
+\newcommand{\circled}[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=3pt,line width=2pt,color=blockpurple] (char) {\Large\textbf{#1}};}}
+\let\citep\cite
+
 
 % ====================
 % Shorthand
@@ -37,6 +40,7 @@
 \definecolor{goldstar}{HTML}{FFD700}
 \definecolor{neonpink}{HTML}{FF007F}
 \definecolor{electricblue}{HTML}{00D2FF}
+\definecolor{lightlavender}{HTML}{EFE8FF}
 % ====================
 % Beamer Theme
 % ====================
@@ -121,41 +125,28 @@
   \end{column}
 \end{columns}
 
-\vspace{0.4cm}
+\vspace{1.4cm}
 
 % ====================
-% Row 2: Two columns — Motivation+Contributions | Methodology
+% Row 2: Two columns — Motivation | Contributions
 % ====================
 \begin{columns}[t]
 \separatorcolumn
 
-% ---- LEFT: Motivation + Contributions ----
+% ---- LEFT: Motivation ----
 \begin{column}{\colwidth}
 
   \begingroup
-  \setbeamercolor{block title}{fg=white, bg=neonpink}
-  \setbeamercolor{item}{fg=neonpink}
+  \setbeamercolor{block title}{fg=white, bg=blockpurple}
+  \setbeamercolor{block body}{fg=darktext, bg=lightlavender}
+  \setbeamercolor{item}{fg=blockpurple}
   \begin{block}{Motivation}
-    \LARGE
+    \Huge
     \begin{itemize}
       \item RL agents should discover \textbf{diverse, high-quality trajectories}
-      not just maximize a scalar reward\cite{eysenbach2018diversityneedlearningskills}.
+      not just maximize a scalar reward \cite{eysenbach2018diversityneedlearningskills}.
       \item Existing metrics \textbf{fail to evaluate} diversity across agents: they improve exploration but cannot compare behavioral diversity.
-
     \end{itemize}
-  \end{block}
-  \endgroup
-
-  \vspace{0.3cm}
-
-  \begingroup
-  \setbeamercolor{block title}{fg=white, bg=electricblue}
-  \setbeamercolor{item}{fg=electricblue}
-  \begin{block}{Contributions}
-    \LARGE
-    \begin{itemize}
-      \item \textbf{Temporal Vendi Score (\metric{})}: a novel domain-agnostic metric for \textbf{behavioral diversity} of RL agents.
-      \item \metric{} captures the \textbf{sequential structure} of trajectories, aligned with the MDP's temporal dynamics.    \end{itemize}
   \end{block}
   \endgroup
 
@@ -163,34 +154,19 @@
 
 \separatorcolumn
 
-% ---- RIGHT: Methodology ----
+% ---- RIGHT: Contributions ----
 \begin{column}{\colwidth}
 
   \begingroup
   \setbeamercolor{block title}{fg=white, bg=blockpurple}
-  \setbeamercolor{block body}{fg=darktext, bg=white}
-  \begin{block}{Methodology: Temporal Vendi Score}
-    \LARGE
-    \begin{enumerate}
-      \item \textbf{Sample Trajectories}  via environment rollouts.
-
-      \vspace{0.3cm}
-      \item \textbf{Measure Similarity} between $\tau{=}(s_1,\!\dots,\!s_L)$ and $\tau'{=}(s'_1,\!\dots,\!s'_{L'})$ via the \textbf{Global Alignment Kernel \cite{cuturi2007kernel}}:
-
-      \vspace{0.4cm}
-      \begin{center}
-        \scalebox{1.35}{$\displaystyle
-          k(\tau,\tau') \;=\!\!\sum_{\pi \in \mathcal{A}(\tau,\tau')} \prod_{(i,j)\in\pi} \exp\!\left(-\frac{d_{\text{sym}}(s_i, s'_j)}{\sigma}\right)
-        $}
-      \end{center}
-      \vspace{0.3cm}
-
-      $\mathcal{A}(\tau,\tau')$ = all valid monotonic alignments; $d$ is a symmetrized \textbf{time-to-reach} distance between states.
-
-      \vspace{0.3cm}
-      \item \textbf{Aggregate:} Eigenvalues of the pairwise similarity matrix     
-      \item \textbf{Score:} interpretable diversity scalar via the \textbf{Vendi Score} \cite{friedman2023vendiscorediversityevaluation}.
-    \end{enumerate}
+  \setbeamercolor{block body}{fg=darktext, bg=lightlavender}
+  \setbeamercolor{item}{fg=blockpurple}
+  \begin{block}{Contributions}
+    \Huge
+    \begin{itemize}
+      \item \textbf{Temporal Vendi Score (\metric{})}: a novel domain-agnostic metric for \textbf{behavioral diversity} of RL agents.
+      \item \metric{} captures the \textbf{sequential structure} of trajectories, aligned with the MDP's temporal dynamics.
+    \end{itemize}
   \end{block}
   \endgroup
 
@@ -199,7 +175,7 @@
 \separatorcolumn
 \end{columns}
 
-\vspace{0.3cm}
+\vspace{0.8cm}
 
 % ====================
 % Row 3: Method Figure — Full Width Horizontal (The Big Plot)
@@ -211,74 +187,94 @@
     \setbeamercolor{block title}{fg=white, bg=blockpurple}
     \begin{block}{Procedure: Computing the Temporal Vendi Score}
       \centering
-      \includegraphics[width=0.9\linewidth]{figures/method.pdf}
+      \includegraphics[width=1.0\linewidth]{figures/method_v3.pdf}
     \end{block}
     \endgroup
   \end{column}
   \separatorcolumn
 \end{columns}
 
-\vspace{0.6cm}
+\vspace{1cm}
+
+
+
 
 % ====================
-% Row 4: Experiments (left, wide) + References (right, narrow)
+% Row 4: Experiments (left, wide) + Descriptions (right, narrow)
 % ====================
 \begin{columns}[t]
   \separatorcolumn
 
   % ---- LEFT: 3 experiment plots stacked ----
-  \begin{column}{0.6\paperwidth}
+  \begin{column}{0.7\paperwidth}
     \begin{block}{Experiments \& Key Results}
 
-      % --- Interpretability ---
-      {\Large\bfseries\textcolor{blockheader}{Interpretability}}\\[0.3em]
-      \centering
-      \includegraphics[width=\linewidth]{figures/interpretable.pdf}
-
-      \vspace{0.3cm}
-
-      % --- Superiority Over Baselines ---
-      \raggedright{\Large\bfseries\textcolor{blockheader}{Superiority Over Baselines}}\\[0.15em]
-      \includegraphics[width=1.1\linewidth]{figures/key.pdf}
-
-      \vspace{0.3cm}
-
-      % --- Continuous Control ---
+     % --- Continuous Control ---
       \raggedright{\Large\bfseries\textcolor{blockheader}{Continuous Control}}\\[0.15em]
       \centering
       \includegraphics[width=\linewidth]{figures/continuous.pdf}
+      
+       \vspace{0.3cm}
+       
 
-    \end{block}
+      % --- Superiority Over Baselines ---
+      \raggedright{\Large\bfseries\textcolor{blockheader}{Superiority Over Baselines}}\\[0.15em]
+      \hspace*{-1.5cm}
+      \includegraphics[width=1.0\linewidth]{figures/key.pdf}
+
+
+
+      
+      \end{block}
   \end{column}
 
   \separatorcolumn
 
   % ---- RIGHT: Experiment Descriptions + References ----
-  \begin{column}{0.35\paperwidth}
+  \begin{column}{0.2\paperwidth}
 
-    \begin{block}{About the Experiments}
+    \begin{block}{Continuous Control}
       \footnotesize
 		\LARGE
-      \textbf{\textcolor{blockheader}{Interpretability.}}
-      In a grid maze \metric{} returns 1.0 for a single path, 1.67 for four overlapping paths on one side, 1.99 for two paths on opposite sides, and 3.32 for the mirrored configuration (${\approx}2\times1.67$).
+		
+		
+      \metric{} scales to continuous point-maze environments using learned quasimetric distances.
+          \end{block}
+          
+              \vspace{0.3cm}
 
-      \vspace{0.4em}
+          
+    \begin{block}{Superiority Over Baselines.}
+      \footnotesize
+		\LARGE
+		As the agent learns to use 1–5 keys in a maze, state coverage and occupancy entropy stay nearly flat. The diversity is temporal, not spatial. \metric{} correctly captures this sequential structure and increases steadily with each new strategy.
 
-      \textbf{\textcolor{blockheader}{Superiority Over Baselines.}}
-      As the agent learns to use 1–5 keys in a maze, state coverage and occupancy entropy stay nearly flat. The diversity is temporal, not spatial. \metric{} correctly captures this sequential structure and increases steadily with each new strategy.
 
-      \vspace{0.4em}
 
-      \textbf{\textcolor{blockheader}{Continuous Control.}}
-      \metric{} scales to continuous point-maze environments using learned quasimetric distances. It stabilises within $\sim$256 rollouts and cleanly separates low and high-diversity.
-    \end{block}
+	 \end{block}
+% ====================
+% Row 5: References
+% ====================
+\begingroup
+\setbeamercolor{block title}{fg=white, bg=black}
+\setbeamercolor{block body}{fg=darktext, bg=white}
+\begin{block}{References}
+    \footnotesize
+    \begin{thebibliography}{9}
+        \setbeamertemplate{bibliography item}[text] % Use numbers instead of icons
+        
+        \bibitem{cuturi2007kernel} 
+        M.~Cuturi et al. \textit{A kernel for time series based on global alignments.} ICASSP, 2007.
 
-    \vspace{0.3cm}
+        \bibitem{eysenbach2018diversityneedlearningskills} 
+        B.~Eysenbach et al. \textit{Diversity is all you need: Learning skills without a reward function.} ICLR, 2019.
 
-    \begin{block}{References}
-      \bibliographystyle{plain}
-      \bibliography{poster}
-    \end{block}
+        \bibitem{friedman2023vendi} 
+        D.~Friedman \& A.B.~Dieng. \textit{The Vendi Score: A diversity evaluation metric for ML.} 2023.
+    \end{thebibliography}
+\end{block}
+\endgroup
+
   \end{column}
 
   \separatorcolumn
