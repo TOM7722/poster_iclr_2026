@@ -82,9 +82,9 @@
 % ====================
 % Title / Author Info
 % ====================
-\title{Beyond Reward Maximization:\\Evaluating the Diversity of Trajectories\\in RL with Temporal Vendi Score}
+\title{Beyond Reward Maximization:\\[-8mm]Evaluating the Diversity of Trajectories\\[2mm]in RL with Temporal Vendi Score}
 \author{Tom Stanic\textsuperscript{1} \quad Marco Jiralerspong\textsuperscript{1,2} \quad Xiaofeng Zhang\textsuperscript{1,2} \quad Danilo Vucetic\textsuperscript{1,2} \quad Gauthier Gidel\textsuperscript{1,2,3}}
-\institute{\textsuperscript{1}Universit\'{e} de Montr\'{e}al \qquad \textsuperscript{2}Mila -- Institut Qu\'{e}b\'{e}cois d'Intelligence Artificielle \qquad \textsuperscript{3}CIFAR}
+\institute{\textsuperscript{1}Universit\'{e} de Montr\'{e}al \qquad \textsuperscript{2}Mila -- Institut Qu\'{e}b\'{e}cois d'Intelligence Artificielle \qquad \textsuperscript{3}Canada CIFAR AI Chair}
 \date{}
 
 % ====================
@@ -103,8 +103,8 @@
   \fill[white] ([yshift=-22cm]current page.north west) rectangle ([yshift=-86cm]current page.north east);
   \node[anchor=north west] at ([xshift=-2.0cm, yshift=-1.cm]current page.north west)
     {\includegraphics[height=8cm]{mila.png}};
-  \node[anchor=north east] at ([xshift=-0.0cm, yshift=-0.cm]current page.north east)
-    {\includegraphics[height=9cm]{udem.png}};
+  \node[anchor=north east] at ([xshift=-0.0cm, yshift=-2.0cm]current page.north east)
+    {\includegraphics[height=5cm]{udem_white.png}};
 \end{tikzpicture}
 
 \vspace{-1.5cm}
@@ -154,7 +154,7 @@
   \begin{block}{Contributions}
     \LARGE
     \begin{itemize}
-      \item We introduce the \textbf{Temporal Vendi Score (\metric{})}: a novel, domain-agnostic metric for \textbf{behavioral diversity} of RL agents.
+      \item \textbf{Temporal Vendi Score (\metric{})}: a novel domain-agnostic metric for \textbf{behavioral diversity} of RL agents.
       \item \metric{} captures the \textbf{sequential structure} of trajectories, aligned with the MDP's temporal dynamics.    \end{itemize}
   \end{block}
   \endgroup
@@ -172,7 +172,7 @@
   \begin{block}{Methodology: Temporal Vendi Score}
     \LARGE
     \begin{enumerate}
-      \item \textbf{Sample Trajectories} from the agent via environment rollouts.
+      \item \textbf{Sample Trajectories}  via environment rollouts.
 
       \vspace{0.3cm}
       \item \textbf{Measure Similarity} between $\tau{=}(s_1,\!\dots,\!s_L)$ and $\tau'{=}(s'_1,\!\dots,\!s'_{L'})$ via the \textbf{Global Alignment Kernel \cite{cuturi2007kernel}}:
@@ -185,7 +185,7 @@
       \end{center}
       \vspace{0.3cm}
 
-      $\mathcal{A}(\tau,\tau')$ = all valid monotonic alignments; $d$ is a symmetrize \textbf{time-to-reach} distance between states.
+      $\mathcal{A}(\tau,\tau')$ = all valid monotonic alignments; $d$ is a symmetrized \textbf{time-to-reach} distance between states.
 
       \vspace{0.3cm}
       \item \textbf{Aggregate:} Eigenvalues of the pairwise similarity matrix     
@@ -211,7 +211,7 @@
     \setbeamercolor{block title}{fg=white, bg=blockpurple}
     \begin{block}{Procedure: Computing the Temporal Vendi Score}
       \centering
-      \includegraphics[width=0.76\linewidth]{figures/method.pdf}
+      \includegraphics[width=0.9\linewidth]{figures/method.pdf}
     \end{block}
     \endgroup
   \end{column}
@@ -227,27 +227,26 @@
   \separatorcolumn
 
   % ---- LEFT: 3 experiment plots stacked ----
-  \begin{column}{0.68\paperwidth}
+  \begin{column}{0.6\paperwidth}
     \begin{block}{Experiments \& Key Results}
 
       % --- Interpretability ---
       {\Large\bfseries\textcolor{blockheader}{Interpretability}}\\[0.3em]
       \centering
-      \includegraphics[width=0.9\linewidth]{figures/interpretable.pdf}
+      \includegraphics[width=\linewidth]{figures/interpretable.pdf}
 
       \vspace{0.3cm}
 
       % --- Superiority Over Baselines ---
       \raggedright{\Large\bfseries\textcolor{blockheader}{Superiority Over Baselines}}\\[0.15em]
-      \centering
-      \includegraphics[width=0.9\linewidth]{figures/key.pdf}
+      \includegraphics[width=1.1\linewidth]{figures/key.pdf}
 
       \vspace{0.3cm}
 
       % --- Continuous Control ---
       \raggedright{\Large\bfseries\textcolor{blockheader}{Continuous Control}}\\[0.15em]
       \centering
-      \includegraphics[width=0.9\linewidth]{figures/continuous.pdf}
+      \includegraphics[width=\linewidth]{figures/continuous.pdf}
 
     \end{block}
   \end{column}
@@ -255,7 +254,7 @@
   \separatorcolumn
 
   % ---- RIGHT: Experiment Descriptions + References ----
-  \begin{column}{0.25\paperwidth}
+  \begin{column}{0.35\paperwidth}
 
     \begin{block}{About the Experiments}
       \footnotesize
@@ -277,7 +276,6 @@
     \vspace{0.3cm}
 
     \begin{block}{References}
-      \footnotesize
       \bibliographystyle{plain}
       \bibliography{poster}
     \end{block}
